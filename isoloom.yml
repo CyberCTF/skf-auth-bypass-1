@@ -1,0 +1,29 @@
+# yaml-language-server: $schema=https://www.isoloom.com/schema/v1.json
+# OWASP SKF Authentication Bypass (OWASP Security Knowledge Framework labs, by Glenn ten Cate, Riccardo ten Cate and the SKF contributors) as an Isoloom spec:
+# a Flask login whose session cookie is just a hash of the user name (authentication bypass). The SKF lab folder python/Auth-bypass-1 is
+# vendored unchanged in app/ and built by its own Dockerfile.
+# `isoloom generate`, then `isoloom run docker`.
+version: 1
+name: skf-auth-bypass-1
+
+networks:
+  lab: { cidr: 10.60.145.0/24, internet: false }
+
+machines:
+  web:
+    networks: { lab: 10 }
+    services: [{ port: 5000, name: web, http: true, publish: 5050 }]
+    resources: { cpus: 1, memory_mb: 256 }
+    docker:
+      build: app
+
+checks:
+  - name: the lab answers
+    http: http://web:5000/
+    wait: 120
+  - name: the login form posts to /login and registration is open
+    script: checks/login.sh
+
+message: |
+  OWASP SKF Authentication Bypass answers at http://localhost:{{ machines.web.services.0.publish }}/.
+  Register a user, log in and look at the session cookie you get.

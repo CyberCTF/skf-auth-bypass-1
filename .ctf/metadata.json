@@ -1,0 +1,14 @@
+{
+  "title": "OWASP SKF Authentication Bypass",
+  "description": "A Flask application with registration and login. After login the session cookie is derived from the user name only, so it can be computed for any user.",
+  "question": "Get logged in as the admin user without knowing the admin password by forging the session cookie (authentication bypass).",
+  "category": "WEB",
+  "difficulty": 2,
+  "evidence_kind": "SECRET",
+  "capabilities": [
+    "authentication-bypass",
+    "session",
+    "cookies",
+    "hashing"
+  ]
+}

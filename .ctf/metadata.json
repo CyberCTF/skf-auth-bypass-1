@@ -4,11 +4,5 @@
   "question": "Get logged in as the admin user without knowing the admin password by forging the session cookie (authentication bypass).",
   "category": "WEB",
   "difficulty": 2,
-  "evidence_kind": "SECRET",
-  "capabilities": [
-    "authentication-bypass",
-    "session",
-    "cookies",
-    "hashing"
-  ]
+  "evidence_kind": "SECRET"
 }

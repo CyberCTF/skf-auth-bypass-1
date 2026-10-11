@@ -1,0 +1,46 @@
+{
+  "objectives": [
+    {
+      "key": "main",
+      "title": "Read the flag",
+      "prompt": "Log in as admin without the password and retrieve the flag (/ctf/flag).",
+      "check": {
+        "evidence": "SECRET",
+        "format": "FLAG{%s}"
+      },
+      "dev": "FLAG{dev-skf-auth-bypass-1}",
+      "hints": [
+        "After login, compare your session cookie with your user name.",
+        "Read about predictable session tokens."
+      ],
+      "steps": [
+        {
+          "key": "cookie",
+          "title": "Inspect the session",
+          "prompt": "From which piece of user data is the session cookie derived?",
+          "check": {
+            "answer": [
+              "username",
+              "user name",
+              "the username",
+              "name"
+            ]
+          }
+        },
+        {
+          "key": "class",
+          "title": "Name the weakness",
+          "prompt": "What class of vulnerability is this?",
+          "check": {
+            "answer": [
+              "authentication bypass",
+              "auth bypass",
+              "predictable session",
+              "session prediction"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
